@@ -1,17 +1,11 @@
-const API_URL_ALL = "https://rickandmortyapi.com/api/character";
+import { renderCharacters } from "./view-characters.js";
 
-let characterPages = 0;
-let allCharactes = [];
+const charactersButton = document.querySelector(".nav-button-characters");
+const locationsButton = document.querySelector(".nav-button-locations");
+const episodesButton = document.querySelector(".nav-button-episodes");
 
-fetch(API_URL_ALL)
-    .then((res) => res.json())
-    .then((res) => {
-        characterPages = res.info.pages;
-        for (let i = 1; i <= characterPages; i++) {
-            fetch(`${API_URL_ALL}?page=${i}`)
-                .then((res) => res.json())
-                .then((characters) => {
-                    characters.results.forEach((e) => allCharactes.push(e));
-                });
-        }
-    });
+// charactersButton.addEventListener("click", renderCharacters());
+// charactersButton.addEventListener("click", renderCharacters());
+// charactersButton.addEventListener("click", renderCharacters());
+
+renderCharacters();

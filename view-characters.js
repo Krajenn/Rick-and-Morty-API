@@ -10,6 +10,14 @@ export const renderCharacters = () => {
             .then((res) => res.json())
             .then((res) => {
                 res.results.forEach((e) => {
+                    e = {
+                        id: e.id,
+                        name: e.name,
+                        species: e.species,
+                        status: e.status,
+                        gender: e.gender,
+                        image: e.image,
+                    };
                     allCharacters.push(e);
                 });
                 if (res.info && res.info.next) {

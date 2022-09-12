@@ -10,19 +10,21 @@
 </head>
 <body>
     <header>
-        <h1>Rick and Morty</h1>
+        <h1><a href="./">Rick and Morty</a></h1>
     </header>
+    <div class="filters">
+        <input type="text" id="query" placeholder="Search for a character...">
+    </div>
     <main id="root">
-
     </main>
 
     <div class="loader-wrapper">
         <span class="loader"><span class="loader-inner"></span></span>
     </div>
 
-    <script type="module" src="view-characters.js"></script>
+    <script type="module" src="view-dashboard.js"></script>
+    <script type="module" src="view-detail.js"></script>
     <script type="module" src="dom-utils.js"></script>
-    <script type="module" src="loader.js"></script>
     <script type="module" src="app.js"></script>
 </body>
 </html>

@@ -72,13 +72,36 @@ const createListElement = (allCharacters) => {
     return listElement;
 };
 
-const hideLoader = () => {
-    document.querySelector(".loader-wrapper").style.display = "none";
-};
-
 export const renderCharactersList = (allCharacters) => {
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = "";
     rootElement.appendChild(createListElement(allCharacters));
-    hideLoader();
+    document.querySelector(".loader-wrapper").style.display = "none";
+};
+
+// ************* DETAIL *****************
+
+const createDetailElement = (character) => {
+    const characterWrapper = document.createElement("div");
+    characterWrapper.classList.add("detail-container");
+
+    characterWrapper.appendChild(createImageElement(character));
+
+    const nameWrapper = document.createElement("div");
+    const nameElement = document.createElement("strong");
+    nameElement.classList.add("character-name");
+    nameElement.innerText = character.name;
+
+    nameWrapper.appendChild(nameElement);
+    characterWrapper.appendChild(nameWrapper);
+
+    return characterWrapper;
+};
+
+export const renderCharacterDetail = (character) => {
+    const rootElement = document.querySelector("#root");
+    rootElement.innerHTML = "";
+    rootElement.appendChild(createDetailElement(character));
+
+    document.querySelector(".loader-wrapper").style.display = "none";
 };

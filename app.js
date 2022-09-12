@@ -1,3 +1,8 @@
-import { renderCharacters } from "./view-characters.js";
+import { renderCharacters } from "./view-dashboard.js";
+import { renderDetail } from "./view-detail.js";
 
-renderCharacters();
+if (window.location.search.includes("?id=")) {
+    renderDetail();
+} else {
+    renderCharacters();
+}

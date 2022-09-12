@@ -4,6 +4,7 @@ export const renderCharacters = () => {
     const API_URL_ALL = "https://rickandmortyapi.com/api/character";
 
     let allCharacters = [];
+    let query = "";
 
     const fetchData = (URL) => {
         fetch(URL)
@@ -27,6 +28,19 @@ export const renderCharacters = () => {
                 }
             });
     };
+
+    const filterDataAndRenderCharactersList = () => {
+        const filteredCharacters = allCharacters.filter((character) => {
+            return character.name.toLowerCase().includes(query);
+        });
+
+        renderCharactersList(filteredCharacters);
+    };
+
+    document.querySelector("#query").addEventListener("input", (e) => {
+        query = e.target.value.toLowerCase().trim();
+        filterDataAndRenderCharactersList(query);
+    });
 
     fetchData(API_URL_ALL);
 };

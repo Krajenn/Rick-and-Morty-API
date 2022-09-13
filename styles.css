@@ -33,7 +33,7 @@ header a {
 
 main {
     max-width: 1280px;
-    margin: 0 10vw;
+    margin: 0 auto;
 }
 
 main ul {
@@ -41,6 +41,7 @@ main ul {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 2rem;
     list-style: none;
+    padding: 0 10vw;
 }
 
 li {

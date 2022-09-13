@@ -76,6 +76,7 @@ export const renderCharactersList = (allCharacters) => {
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = "";
     rootElement.appendChild(createListElement(allCharacters));
+
     document.querySelector(".loader-wrapper").style.display = "none";
 };
 
@@ -104,4 +105,26 @@ export const renderCharacterDetail = (character) => {
     rootElement.appendChild(createDetailElement(character));
 
     document.querySelector(".loader-wrapper").style.display = "none";
+};
+
+// ************ CREATE FILTER OPTIONS **********
+
+const createOptionElement = (option) => {
+    const optionElement = document.createElement("option");
+    optionElement.setAttribute("value", option);
+    optionElement.innerHTML = option;
+    return optionElement;
+};
+
+export const renderFilterOptions = (optionsRaw, selectId) => {
+    const options = [];
+    for (const key in optionsRaw) {
+        options.push(key);
+    }
+    options.sort();
+
+    const selectDom = document.querySelector(selectId);
+    options.forEach((option) => {
+        selectDom.appendChild(createOptionElement(option));
+    });
 };

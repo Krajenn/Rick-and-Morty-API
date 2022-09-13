@@ -1,4 +1,5 @@
 import { renderCharactersList } from "./dom-utils.js";
+import { renderFilterOptions } from "./dom-utils.js";
 
 export const renderCharacters = () => {
     const API_URL_ALL = "https://rickandmortyapi.com/api/character";
@@ -25,9 +26,33 @@ export const renderCharacters = () => {
                     fetchData(res.info.next);
                 } else {
                     renderCharactersList(allCharacters);
+                    renderFilterOptions(
+                        groupBy("species", allCharacters),
+                        "#species"
+                    );
+                    renderFilterOptions(
+                        groupBy("status", allCharacters),
+                        "#status"
+                    );
+                    renderFilterOptions(
+                        groupBy("gender", allCharacters),
+                        "#gender"
+                    );
                 }
             });
     };
+
+    const groupBy = (key, arr) =>
+        arr.reduce((cache, character) => {
+            const property = character[key];
+            if (property in cache) {
+                return {
+                    ...cache,
+                    [property]: cache[property].concat(character),
+                };
+            }
+            return { ...cache, [property]: [character] };
+        }, {});
 
     const filterDataAndRenderCharactersList = () => {
         const filteredCharacters = allCharacters.filter((character) => {

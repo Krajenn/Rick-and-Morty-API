@@ -6,6 +6,9 @@ export const renderCharacters = () => {
 
     let allCharacters = [];
     let query = "";
+    let species = "";
+    let status = "";
+    let gender = "";
 
     const fetchData = (URL) => {
         fetch(URL)
@@ -56,7 +59,12 @@ export const renderCharacters = () => {
 
     const filterDataAndRenderCharactersList = () => {
         const filteredCharacters = allCharacters.filter((character) => {
-            return character.name.toLowerCase().includes(query);
+            return (
+                character.name.toLowerCase().includes(query) &&
+                (!species || character.species === species) &&
+                (!status || character.status === status) &&
+                (!gender || character.gender === gender)
+            );
         });
 
         renderCharactersList(filteredCharacters);
@@ -65,6 +73,19 @@ export const renderCharacters = () => {
     document.querySelector("#query").addEventListener("input", (e) => {
         query = e.target.value.toLowerCase().trim();
         filterDataAndRenderCharactersList(query);
+    });
+
+    document.querySelector("#species").addEventListener("change", (e) => {
+        species = e.target.value;
+        filterDataAndRenderCharactersList(species);
+    });
+    document.querySelector("#status").addEventListener("change", (e) => {
+        status = e.target.value;
+        filterDataAndRenderCharactersList(status);
+    });
+    document.querySelector("#gender").addEventListener("change", (e) => {
+        gender = e.target.value;
+        filterDataAndRenderCharactersList(gender);
     });
 
     fetchData(API_URL_ALL);

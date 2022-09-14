@@ -113,6 +113,7 @@ const createOptionElement = (option) => {
     const optionElement = document.createElement("option");
     optionElement.setAttribute("value", option);
     optionElement.innerHTML = option;
+
     return optionElement;
 };
 

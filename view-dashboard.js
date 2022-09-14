@@ -66,26 +66,25 @@ export const renderCharacters = () => {
                 (!gender || character.gender === gender)
             );
         });
-
         renderCharactersList(filteredCharacters);
     };
 
     document.querySelector("#query").addEventListener("input", (e) => {
         query = e.target.value.toLowerCase().trim();
-        filterDataAndRenderCharactersList(query);
+        filterDataAndRenderCharactersList();
     });
 
     document.querySelector("#species").addEventListener("change", (e) => {
         species = e.target.value;
-        filterDataAndRenderCharactersList(species);
+        filterDataAndRenderCharactersList();
     });
     document.querySelector("#status").addEventListener("change", (e) => {
         status = e.target.value;
-        filterDataAndRenderCharactersList(status);
+        filterDataAndRenderCharactersList();
     });
     document.querySelector("#gender").addEventListener("change", (e) => {
         gender = e.target.value;
-        filterDataAndRenderCharactersList(gender);
+        filterDataAndRenderCharactersList();
     });
 
     fetchData(API_URL_ALL);

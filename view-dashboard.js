@@ -1,6 +1,5 @@
 import { renderCharactersList } from "./dom-utils.js";
 import { renderFilterOptions } from "./dom-utils.js";
-import { mobileMenuHandler } from "./dom-utils.js";
 
 export const renderCharacters = () => {
     const API_URL_ALL = "https://rickandmortyapi.com/api/character";
@@ -88,6 +87,18 @@ export const renderCharacters = () => {
         filterDataAndRenderCharactersList();
     });
 
+    const mobileMenuHandler = () => {
+        const filtersDivjHeigth =
+            (document.querySelector(".filters").offsetHeight / 4) * 3;
+        const mainElement = document.querySelector("main");
+
+        if (window.innerWidth <= 576) {
+            mainElement.style.transform = `translateY(calc(-${filtersDivjHeigth}px - 2rem))`;
+        } else {
+            mainElement.style.transform = `translateY(0)`;
+        }
+    };
+
     document.querySelector(".filter-icon").addEventListener("click", () => {
         const filtersMobile = document.querySelectorAll(".filter-mobile");
         const filtersDivjHeigth =
@@ -108,6 +119,8 @@ export const renderCharacters = () => {
     window.addEventListener("resize", () => {
         mobileMenuHandler();
     });
+
+    mobileMenuHandler();
 
     fetchData(API_URL_ALL);
 };

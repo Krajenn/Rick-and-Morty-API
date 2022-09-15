@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
     <title>Rick and Morty API</title>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@40,300,0,0" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,20 +17,29 @@
     <div class="filters">
         <div class="filter-wrapper">
             <input type="text" id="query" placeholder="Search for a character...">
+
+            <div class="filter-icon">
+                <span class="material-symbols-outlined">
+                    tune
+                    </span>
+            </div>
         </div>
-        <div class="filter-wrapper">
+        <div class="filter-wrapper filter-mobile">
             <select name="species" id="species">
-                <option value="" >Filter by species</option>
+                <option value="" class="option-holder" selected disabled>Filter by species</option>
+                <option value="" >All</option>
             </select>
         </div>
-        <div class="filter-wrapper">
+        <div class="filter-wrapper filter-mobile">
             <select name="status" id="status">
-                <option value="" class="option-holder">Filter by status</option>
+                <option value="" class="option-holder" selected disabled>Filter by status</option>
+                <option value="" >All</option>
             </select>
         </div>
-        <div class="filter-wrapper">
+        <div class="filter-wrapper filter-mobile">
             <select name="gender" id="gender">
-                <option value="" class="option-holder">Filter by gender</option>
+                <option value="" class="option-holder" selected disabled>Filter by gender</option>
+                <option value="" >All</option>
             </select>
         </div>
     </div>

@@ -36,6 +36,7 @@ header img {
 }
 
 .filters {
+    position: relative;
     margin: 2rem auto;
     max-width: 1280px;
     padding: 0 10vw;
@@ -63,6 +64,10 @@ header img {
     transform: translate(-50%, -50%);
 }
 
+.filter-icon {
+    display: none;
+}
+
 select,
 input {
     outline: none;
@@ -87,6 +92,7 @@ input:hover {
 main {
     max-width: 1280px;
     margin: 0 auto;
+    /* transition: 0.3s ease; */
 }
 
 main ul {
@@ -159,8 +165,8 @@ li a:hover {
 
 .loader {
     position: absolute;
-    border: 10px solid rgb(194, 194, 194);
-    border-top: 10px solid grey;
+    border: 1rem solid rgb(194, 194, 194);
+    border-top: 1rem solid grey;
     border-radius: 50%;
     width: 20vw;
     height: 20vw;
@@ -206,6 +212,13 @@ li a:hover {
         grid-template-columns: 1fr 1fr;
     }
 
+    .loader {
+        width: 35vw;
+        height: 35vw;
+        border: 0.5rem solid rgb(194, 194, 194);
+        border-top: 0.5rem solid grey;
+    }
+
     .loader-wrapper img {
         width: 20vw;
     }
@@ -214,6 +227,28 @@ li a:hover {
 @media screen and (max-width: 576px) {
     .filters {
         grid-template-columns: 1fr;
+    }
+
+    .filter-wrapper.filter-mobile {
+        opacity: 0;
+        transition: 0.3s ease-in-out;
+    }
+
+    .filter-wrapper.filter-mobile.active {
+        opacity: 1;
+    }
+
+    .filter-wrapper:first-child {
+        width: 60vw;
+    }
+
+    .filter-icon {
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: -20vw;
+        transform: translateY(-50%);
+        cursor: pointer;
     }
 
     main ul {

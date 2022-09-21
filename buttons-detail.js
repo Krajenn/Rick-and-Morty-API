@@ -1,6 +1,22 @@
+export const clearContent = () => {
+    document.querySelector(".button-content-container").innerHTML = "";
+};
+
+const renderError = () => {
+    const buttonContentContainer = document.querySelector(
+        ".button-content-container"
+    );
+    buttonContentContainer.innerHTML = "";
+
+    const infoElement = document.createElement("li");
+    infoElement.innerHTML = "No records found";
+
+    buttonContentContainer.appendChild(infoElement);
+};
+
 export const renderOrigin = (origin) => {
     const createInfoElement = (labelName, value) => {
-        const infoElement = document.createElement("div");
+        const infoElement = document.createElement("li");
 
         const labelElement = document.createElement("strong");
         labelElement.innerText = `${labelName}: `;
@@ -45,11 +61,16 @@ export const renderOrigin = (origin) => {
             };
             renderContainer(origin);
         })
-        .catch((e) => {
-            console.error("No records found: ", e);
+        .catch((error) => {
+            console.error("Error: ", error);
+            renderError();
         });
 };
 
 export const renderLocation = () => {
-    
-}
+    console.log("location");
+};
+
+export const renderChapters = () => {
+    console.log("chapters");
+};

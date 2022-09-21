@@ -57,10 +57,17 @@ export const renderCharacters = () => {
             return { ...cache, [property]: [character] };
         }, {});
 
-    const filterDataAndRenderCharactersList = () => {
+    const filterDataAndRenderCharactersList = (query) => {
         const filteredCharacters = allCharacters.filter((character) => {
             return (
-                character.name.toLowerCase().includes(query) &&
+                (character.name.toLowerCase().includes(query) ||
+                    character.name
+                        .toLowerCase()
+                        .includes(query.split(" ").reverse().join(" ")) ||
+                    character.name
+                        .replace(/\s/g, "")
+                        .toLowerCase()
+                        .includes(query)) &&
                 (!species || character.species === species) &&
                 (!status || character.status === status) &&
                 (!gender || character.gender === gender)
@@ -71,7 +78,7 @@ export const renderCharacters = () => {
 
     document.querySelector("#query").addEventListener("input", (e) => {
         query = e.target.value.toLowerCase().trim();
-        filterDataAndRenderCharactersList();
+        filterDataAndRenderCharactersList(query);
     });
 
     document.querySelector("#species").addEventListener("change", (e) => {

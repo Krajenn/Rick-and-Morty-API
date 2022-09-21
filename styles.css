@@ -99,7 +99,7 @@ main {
     /* transition: 0.3s ease; */
 }
 
-main ul {
+main ul.ulDashboard {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 2rem;
@@ -155,9 +155,12 @@ li a:hover {
     grid-template-columns: 1fr 1fr;
     background-color: #fff;
     width: 60vw;
+    height: auto;
     margin: 0 auto;
     padding: 2rem;
     border-radius: 1rem;
+    position: relative;
+    z-index: 2;
 }
 
 .img-container img {
@@ -172,6 +175,7 @@ li a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* padding: 1rem 0; */
 }
 
 .basic-info-container > * {
@@ -202,13 +206,32 @@ li a:hover {
     box-shadow: 0 4px 17px 2px rgba(0, 0, 0, 0.2);
 }
 
-.button-content-container {
-    grid-column: 1/3;
-    margin-top: 2rem;
+.button-content-wrapper {
+    display: block;
+    width: 60vw;
+    margin: 0 auto;
+    background-color: #fff;
+    transition: 0.2s ease-in-out;
+    transform: scaleY(0) translateY(-5rem);
+    transform-origin: top center;
+    border-radius: 1rem;
 }
 
-.button-content-container > * {
+.button-content-container {
+    list-style: none;
+    display: inline-block;
+    padding-top: 5rem;
+}
+
+.button-content-container > li {
+    margin: 0;
     text-align: left;
+    padding-bottom: 1rem;
+}
+
+.button-content-wrapper.active {
+    transform: scaleY(1) translateY(-5rem);
+    border-radius: 0 0 1rem 1rem;
 }
 
 /* LOADER */
@@ -259,7 +282,7 @@ li a:hover {
         padding: 0 10vw;
     }
 
-    main ul {
+    main ul.ulDashboard {
         padding: 0 10vw;
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
@@ -269,13 +292,13 @@ li a:hover {
     .filters {
         grid-template-columns: 1fr 1fr;
     }
-    main ul {
+    main ul.ulDashboard {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 @media screen and (max-width: 768px) {
-    main ul {
+    main ul.ulDashboard {
         grid-template-columns: 1fr 1fr;
     }
 
@@ -318,7 +341,7 @@ li a:hover {
         cursor: pointer;
     }
 
-    main ul {
+    main ul.ulDashboard {
         grid-template-columns: 1fr;
     }
 
@@ -331,5 +354,28 @@ li a:hover {
         max-height: 15vh;
         width: auto;
         margin-left: 1rem;
+    }
+
+    /* DETAIL */
+
+    .detail-container {
+        width: 90vw;
+        padding: 1rem 0.5rem;
+    }
+
+    .buttons-container {
+        gap: 1rem;
+        /* flex-wrap: wrap; */
+        width: 30%;
+    }
+
+    .buttons-container > div {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 1rem;
+    }
+
+    .button-content-wrapper {
+        width: 90vw;
     }
 }

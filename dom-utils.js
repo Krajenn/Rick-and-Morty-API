@@ -1,4 +1,7 @@
+import { clearContent } from "./buttons-detail.js";
 import { renderOrigin } from "./buttons-detail.js";
+import { renderLocation } from "./buttons-detail.js";
+import { renderChapters } from "./buttons-detail.js";
 
 const createInfoElement = (labelName, value) => {
     const infoElement = document.createElement("div");
@@ -64,6 +67,7 @@ const createCharacterElement = (character) => {
 
 const createListElement = (allCharacters) => {
     const listElement = document.createElement("ul");
+    listElement.classList.add("ulDashboard");
 
     allCharacters.forEach((character) => {
         listElement.appendChild(createCharacterElement(character));
@@ -116,22 +120,44 @@ const createDetailElement = (character) => {
 
     buttonsContainer.appendChild(originDiv);
     originDiv.addEventListener("click", () => {
-        console.log(character);
-        renderOrigin(character.origin);
+        const buttonContentWrapper = document.querySelector(
+            ".button-content-wrapper"
+        );
+
+        originDiv.classList.toggle("active");
+        buttonContentWrapper.classList.toggle("active");
+
+        const detailContainer = document.querySelector(".detail-container");
+
+        if (originDiv.classList.contains("active")) {
+            detailContainer.style.borderRadius = "1rem 1rem 0 0";
+            // detailContainer.style.transition = "none";
+            renderOrigin(character.origin);
+        } else {
+            detailContainer.style.borderRadius = "1rem";
+        }
     });
 
     buttonsContainer.appendChild(locationDiv);
+    locationDiv.addEventListener("click", () => {
+        locationDiv.classList.toggle("active");
 
-    
+        locationDiv.classList.contains("active")
+            ? renderLocation(character.origin)
+            : clearContent();
+    });
+
     buttonsContainer.appendChild(chaptersDiv);
+    chaptersDiv.addEventListener("click", () => {
+        chaptersDiv.classList.toggle("active");
+
+        chaptersDiv.classList.contains("active")
+            ? renderChapters(character.origin)
+            : clearContent();
+    });
 
     characterWrapper.appendChild(nameWrapper);
     characterWrapper.appendChild(buttonsContainer);
-
-    const buttonContentContainer = document.createElement("div");
-    buttonContentContainer.classList.add("button-content-container");
-
-    characterWrapper.appendChild(buttonContentContainer);
 
     return characterWrapper;
 };
@@ -141,6 +167,14 @@ export const renderCharacterDetail = (character) => {
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = "";
     rootElement.appendChild(createDetailElement(character));
+
+    const buttonContentWrapper = document.createElement("div");
+    buttonContentWrapper.classList.add("button-content-wrapper");
+    const buttonContentContainer = document.createElement("ul");
+    buttonContentContainer.classList.add("button-content-container");
+
+    buttonContentWrapper.appendChild(buttonContentContainer);
+    rootElement.appendChild(buttonContentWrapper);
 
     document.querySelector(".filters").style.display = "none";
 

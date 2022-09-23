@@ -1,7 +1,9 @@
-import { clearContent } from "./buttons-detail.js";
-import { renderOrigin } from "./buttons-detail.js";
-import { renderLocation } from "./buttons-detail.js";
-import { renderChapters } from "./buttons-detail.js";
+import {
+    clearContent,
+    renderOrigin,
+    renderLocation,
+    renderChapters,
+} from "./buttons-detail.js";
 
 const createInfoElement = (labelName, value) => {
     const infoElement = document.createElement("div");
@@ -125,35 +127,66 @@ const createDetailElement = (character) => {
         );
 
         originDiv.classList.toggle("active");
-        buttonContentWrapper.classList.toggle("active");
+        locationDiv.classList.remove("active");
+        chaptersDiv.classList.remove("active");
+
+        buttonContentWrapper.classList.add("active");
 
         const detailContainer = document.querySelector(".detail-container");
 
         if (originDiv.classList.contains("active")) {
             detailContainer.style.borderRadius = "1rem 1rem 0 0";
-            // detailContainer.style.transition = "none";
             renderOrigin(character.origin);
         } else {
+            buttonContentWrapper.classList.remove("active");
             detailContainer.style.borderRadius = "1rem";
         }
     });
 
     buttonsContainer.appendChild(locationDiv);
     locationDiv.addEventListener("click", () => {
-        locationDiv.classList.toggle("active");
+        const buttonContentWrapper = document.querySelector(
+            ".button-content-wrapper"
+        );
 
-        locationDiv.classList.contains("active")
-            ? renderLocation(character.origin)
-            : clearContent();
+        originDiv.classList.remove("active");
+        locationDiv.classList.toggle("active");
+        chaptersDiv.classList.remove("active");
+
+        buttonContentWrapper.classList.add("active");
+
+        const detailContainer = document.querySelector(".detail-container");
+
+        if (locationDiv.classList.contains("active")) {
+            detailContainer.style.borderRadius = "1rem 1rem 0 0";
+            renderLocation(character.location);
+        } else {
+            buttonContentWrapper.classList.remove("active");
+            detailContainer.style.borderRadius = "1rem";
+        }
     });
 
     buttonsContainer.appendChild(chaptersDiv);
     chaptersDiv.addEventListener("click", () => {
+        const buttonContentWrapper = document.querySelector(
+            ".button-content-wrapper"
+        );
+
+        originDiv.classList.remove("active");
+        locationDiv.classList.remove("active");
         chaptersDiv.classList.toggle("active");
 
-        chaptersDiv.classList.contains("active")
-            ? renderChapters(character.origin)
-            : clearContent();
+        buttonContentWrapper.classList.add("active");
+
+        const detailContainer = document.querySelector(".detail-container");
+
+        if (chaptersDiv.classList.contains("active")) {
+            detailContainer.style.borderRadius = "1rem 1rem 0 0";
+            renderChapters(character.episode);
+        } else {
+            buttonContentWrapper.classList.remove("active");
+            detailContainer.style.borderRadius = "1rem";
+        }
     });
 
     characterWrapper.appendChild(nameWrapper);

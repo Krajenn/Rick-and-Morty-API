@@ -296,6 +296,11 @@ li a:hover {
     main ul.ulDashboard {
         grid-template-columns: 1fr 1fr 1fr;
     }
+
+    /* DETAIL */
+    .buttons-container {
+        gap: 2rem;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -312,6 +317,11 @@ li a:hover {
 
     .loader-wrapper img {
         width: 20vw;
+    }
+
+    /* DETAIL */
+    .buttons-container {
+        gap: 1rem;
     }
 }
 
@@ -359,7 +369,8 @@ li a:hover {
 
     /* DETAIL */
 
-    .detail-container {
+    .detail-container,
+    .button-content-wrapper {
         width: 90vw;
         padding: 1rem 0.5rem;
     }
@@ -374,9 +385,5 @@ li a:hover {
         width: 100%;
         text-align: center;
         padding: 1rem 1rem;
-    }
-
-    .button-content-wrapper {
-        width: 90vw;
     }
 }

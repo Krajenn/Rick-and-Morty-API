@@ -57,7 +57,7 @@ export const renderCharacters = () => {
             return { ...cache, [property]: [character] };
         }, {});
 
-    const filterDataAndRenderCharactersList = (query) => {
+    const filterDataAndRenderCharactersList = () => {
         const filteredCharacters = allCharacters.filter((character) => {
             return (
                 (character.name.toLowerCase().includes(query) ||
@@ -78,7 +78,7 @@ export const renderCharacters = () => {
 
     document.querySelector("#query").addEventListener("input", (e) => {
         query = e.target.value.toLowerCase().trim();
-        filterDataAndRenderCharactersList(query);
+        filterDataAndRenderCharactersList();
     });
 
     document.querySelector("#species").addEventListener("change", (e) => {

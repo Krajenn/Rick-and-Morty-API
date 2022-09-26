@@ -1,5 +1,4 @@
 import {
-    clearContent,
     renderOrigin,
     renderLocation,
     renderChapters,
@@ -196,9 +195,28 @@ const createDetailElement = (character) => {
 };
 
 export const renderCharacterDetail = (character) => {
-    console.log(character);
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = "";
+
+    // PREV NEXT
+    const prevNextContainer = document.createElement("div");
+    prevNextContainer.classList.add("prev-next-container");
+
+    const prev = document.createElement("a");
+    prev.classList.add("prev");
+    prev.innerText = "prev";
+    prev.href = `?id=${character.id - 1 ? character.id - 1 : character.id}`;
+
+    const next = document.createElement("a");
+    next.classList.add("next");
+    next.innerText = "next";
+    // next.href = `?id=${}`;
+
+    prevNextContainer.appendChild(prev);
+    prevNextContainer.appendChild(next);
+    rootElement.appendChild(prevNextContainer);
+    // END OF PREV NEXT
+
     rootElement.appendChild(createDetailElement(character));
 
     const buttonContentWrapper = document.createElement("div");

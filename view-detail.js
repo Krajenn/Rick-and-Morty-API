@@ -6,11 +6,10 @@ export const renderDetail = () => {
 
     const API_URL_CHARACTER = `https://rickandmortyapi.com/api/character/${characterId}`;
 
-    let character;
-
     fetch(API_URL_CHARACTER)
         .then((res) => res.json())
         .then((characterRaw) => {
             renderCharacterDetail(characterRaw);
+            console.log(characterRaw);
         });
 };

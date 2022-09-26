@@ -150,6 +150,13 @@ li a:hover {
 
 /* DETAIL */
 
+.prev,
+.next {
+    display: block;
+    padding: 1rem;
+    border: 1px solid black;
+}
+
 .detail-container {
     display: grid;
     place-items: center;

@@ -204,7 +204,7 @@ export const renderCharacterDetail = (character, all) => {
 
     const prev = document.createElement("a");
     prev.classList.add("prev");
-    prev.innerText = "prev";
+    prev.innerText = "previous";
     prev.href = `?id=${character.id - 1 ? character.id - 1 : character.id}`;
 
     const next = document.createElement("a");

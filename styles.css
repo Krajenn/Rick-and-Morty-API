@@ -183,6 +183,7 @@ li a:hover {
     grid-template-columns: 1fr 1fr;
     background-color: #fff;
     width: 60vw;
+    max-width: 1280px;
     height: auto;
     margin: 0 auto;
     padding: 2rem;

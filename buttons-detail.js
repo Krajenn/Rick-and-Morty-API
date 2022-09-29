@@ -68,8 +68,6 @@ export const renderOrigin = (origin) => {
 };
 
 export const renderLocation = (location) => {
-    const renderLocation = () => {};
-
     fetch(location.url)
         .then((res) => res.json())
         .then((location) => {

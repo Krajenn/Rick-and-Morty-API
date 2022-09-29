@@ -194,7 +194,7 @@ const createDetailElement = (character) => {
     return characterWrapper;
 };
 
-export const renderCharacterDetail = (character) => {
+export const renderCharacterDetail = (character, all) => {
     const rootElement = document.querySelector("#root");
     rootElement.innerHTML = "";
 
@@ -210,7 +210,9 @@ export const renderCharacterDetail = (character) => {
     const next = document.createElement("a");
     next.classList.add("next");
     next.innerText = "next";
-    // next.href = `?id=${}`;
+    next.href = `?id=${
+        character.id + 1 <= all ? character.id + 1 : character.id
+    }`;
 
     prevNextContainer.appendChild(prev);
     prevNextContainer.appendChild(next);
